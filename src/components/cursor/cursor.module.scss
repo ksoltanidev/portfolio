@@ -1,0 +1,56 @@
+$losangeWidth: 30px;
+$losangeHeigth: 45px;
+$borderSize: 0.7;
+$losangeScale: 0.88;
+
+.cursorContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    pointer-events: none;
+    mix-blend-mode: exclusion;
+
+    .losangeContainer {
+        //z-index: 9999;
+        width: $losangeWidth;
+        height: $losangeHeigth;
+
+        position: absolute;
+        //pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: transform 0.2s linear;
+
+        .losangeItemBorder {
+            width: $losangeWidth;
+            height: $losangeHeigth;
+            position: absolute;
+            clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+            background-color: white;
+            opacity: 1;
+
+            .losangeItem {
+                position: relative;
+                width: calc(#{$losangeWidth * $borderSize});
+                height: calc(#{$losangeHeigth * $borderSize});
+                top: calc(#{$losangeHeigth * (1-$borderSize) / 2});
+                left: calc(#{$losangeWidth * (1-$borderSize) / 2});
+                clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                background-color: black;
+            }
+        }
+    }
+
+    .activeCursor {
+        //transform: translate(-50%, -50%) scale(0.5) rotate(90deg);
+
+        .losangeItemBorder {
+            //transform: translate(0,-100%);
+            .losangeItem {
+                background-color: white;
+            }
+        }
+    }
+}

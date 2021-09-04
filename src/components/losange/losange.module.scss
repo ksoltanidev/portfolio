@@ -1,0 +1,154 @@
+$losangeWidth: 100%;
+$losangeHeigth: 100%;
+$borderSize: 0.80;
+$flashRate: 3s;
+$borderSizeHover: $borderSize;
+$losangeScale: 0.88;
+
+/* .losangeComponent {
+    width: $losangeWidth;
+    height: $losangeHeigth; */
+    .losangeContainer {
+        width: $losangeWidth;
+        height: $losangeHeigth;
+        position: relative;
+
+        .losangeItemBorder {
+            width: $losangeWidth;
+            height: $losangeHeigth;
+            position: absolute;
+            clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+            background-color: white;
+            opacity: 0.8;
+
+            .losangeItem {
+                position: relative;
+                width: calc(#{$losangeWidth*$borderSize});
+                height: calc(#{$losangeHeigth*$borderSize});
+/*              width: calc(#{$losangeWidth} - #{$borderSize} * 2);
+                height: calc(#{$losangeHeigth} - #{$borderSize} * 2);
+                top: $borderSize;
+                left: $borderSize; */
+                top: calc(#{$losangeHeigth*(1-$borderSize)/2});
+                left: calc(#{$losangeWidth*(1-$borderSize)/2});
+                clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                background-color: black;
+            }
+        }
+        
+        &:hover {
+            width: $losangeWidth;
+            height: $losangeHeigth;
+            .losangeHover {
+                width: $losangeWidth;
+                height: $losangeHeigth;
+                overflow: visible; 
+                position: absolute;
+
+                .losangeHoverBorder {
+                    position: absolute;
+                    width: $losangeWidth;
+                    height: $losangeHeigth;
+                    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                    background-color: white;
+                    opacity: 0;
+                    border-radius: 0px;
+        
+                    .losangeHoverItem {
+                        position: relative;
+                        width: calc(#{$losangeWidth*$borderSizeHover});
+                        height: calc(#{$losangeHeigth*$borderSizeHover});
+/*                         width: calc(#{$losangeWidth} - #{$borderSizeHover} * 2);
+                        height: calc(#{$losangeHeigth} - #{$borderSizeHover} * 2);
+                        top: $borderSizeHover;
+                        left: $borderSizeHover; */
+                        top: calc(#{$losangeHeigth*(1-$borderSizeHover)/2});
+                        left: calc(#{$losangeWidth*(1-$borderSizeHover)/2});
+                        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                        background-color: black;
+                        animation: flash $flashRate cubic-bezier(.15,.65,.48,.82) 0s infinite;
+                    }
+
+                    &:nth-child(1){
+                        animation: hover $flashRate cubic-bezier(.15,.65,.48,.82) 0s infinite;
+                    }
+                    &:nth-child(2){
+                        animation: hover $flashRate cubic-bezier(.15,.65,.48,.82) 1.5s infinite;
+                    }
+                }
+
+            }
+        }
+
+        &:active{
+            .losangeItemBorder {                
+                .losangeItem {
+                    background-color: white;
+                }
+            }
+        }
+    }
+/* } */
+
+@keyframes hover {
+    0%{
+        border-radius: 0px;
+        opacity: 0.75;
+        transform: scale(1);
+    }
+    15%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+@keyframes flash {
+    0%{
+        background-color: black;
+    }
+    5%{
+        background-color: white;
+    }
+    12%{
+        background-color: black;
+    }
+    50%{
+        background-color: black;
+    }
+    55%{
+        background-color: white;
+    }
+    67%{
+        background-color: black;
+    }
+    100%{
+        background-color: black;
+    }
+}
+
+@keyframes flash2 {
+    0%{
+        background-color: black;
+    }
+    5%{
+        background-color: white;
+    }
+    12%{
+        background-color: black;
+    }
+    17%{
+        background-color: black;
+    }
+    22%{
+        background-color: white;
+    }
+    29%{
+        background-color: black;
+    }
+    100%{
+        background-color: black;
+    }
+}
