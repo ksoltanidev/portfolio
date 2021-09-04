@@ -25,6 +25,15 @@ function ThreeScene() {
     const canvasRef = useRef(null);
 
     /**
+     * Base
+     */
+    // Debug
+    const gui = new dat.GUI({
+        width: 400
+    })
+
+
+    /**
      * Sizes
      */
     const sizes = {
@@ -58,8 +67,12 @@ function ThreeScene() {
             // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100);
             
             const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.01, 1000 );
-            camera.position.set(20, 2.5, -6)
+            camera.position.set(15, 2, -4)
             camera.rotation.set(2.66, 0.2, -2.3, "XYZ")
+
+            // gui.add(camera.position, "x").min(-30).max(30).step(0.01).name("Camera X");
+            // gui.add(camera.position, "y").min(-30).max(30).step(0.01).name("Camera Y");
+            // gui.add(camera.position, "z").min(-30).max(30).step(0.01).name("Camera Z");
 
             /**
              * Renderer
@@ -99,6 +112,13 @@ function ThreeScene() {
                     //uColorMultiplier : {value: 0.7},
                 }
             })
+
+            gui.add(grassMaterial.uniforms.uBigWavesElevation, "value").min(0).max(1).step(0.001).name("Grass Waves Elevation");
+            gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "x").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.X");
+            gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "y").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.Z");
+            gui.add(grassMaterial.uniforms.uBigWavesSpeed, "value").min(0).max(5).step(0.01).name("Grass Waves Speed");
+            gui.addColor(grassParameter, "depthColor").name("depht Color").onChange(() => grassMaterial.uniforms.uDepthColor.value.set(grassParameter.depthColor));
+            gui.addColor(grassParameter, "surfaceColor").name("surface Color").onChange(() => grassMaterial.uniforms.uSurfaceColor.value.set(grassParameter.surfaceColor));
 
             /**
              * WORLD
@@ -161,23 +181,10 @@ function ThreeScene() {
                 }
             )
 
-            //const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-            //const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-            //const cube = new THREE.Mesh(geometry, material);
-            //scene.add(cube);
-
             /**
              * Controls
              */
-
-            // Controls
             const controls = new OrbitControls(camera, canvas)
-            //const controls = new FlyControls(camera, canvas)
-            //controls.enableDamping = true
-            // controls.autoForward = false;
-            // controls.movementSpeed = 0.002;
-            // controls.dragToLook = true;
-            // controls.rollSpeed = 0.0010
 
             /**
              * Animate
