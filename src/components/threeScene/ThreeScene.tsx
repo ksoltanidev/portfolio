@@ -1,12 +1,9 @@
-//import './style.css'
-import React, {useRef, useEffect} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as dat from 'dat.gui'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { FlyControls} from 'three/examples/jsm/controls/FlyControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-import {BufferGeometryUtils} from 'three/examples/jsm/utils/BufferGeometryUtils.js'
+import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 //import waterVertexShader from 'glslify-loader!../../shaders/grass/vertex.glsl'
 //import waterFragmenthader from '!!raw-loader!glslify-loader!../../shaders/grass/fragment.glsl'
 //import waterVertexShader from '../../shaders/grass/vertex.glsl'
@@ -18,18 +15,25 @@ import {BufferGeometryUtils} from 'three/examples/jsm/utils/BufferGeometryUtils.
 
 import waterVertexShader from "../../shaders/grass/vertex.js"
 import waterFragmenthader from "../../shaders/grass/fragment.js"
+import PageEnum from "../../types/PageEnum";
+import CameraPosition from "./cameraPositions"
 
-function ThreeScene() {
+type Props = {
+    currentPage: PageEnum
+}
+let camera: THREE.PerspectiveCamera;
+
+function ThreeScene({ currentPage }: Props) {
+    //const [camera, setCamera] = useState<THREE.PerspectiveCamera>()
     const canvasRef = useRef(null);
 
     /**
-     * Base
+     * Debug
      */
-    // Debug
-    // const gui = new dat.GUI({
-    //     width: 400,
-    // })
-
+    const gui = new dat.GUI({
+        width: 400,
+    })
+    gui.hide()
     /**
      * Sizes
      */
@@ -39,10 +43,32 @@ function ThreeScene() {
     }
 
     useEffect(() => {
+        if (CameraPosition && camera) {
+            if (currentPage === PageEnum.HOME) {
+                camera.position.set(CameraPosition.TOP.position.x, CameraPosition.TOP.position.y, CameraPosition.TOP.position.z)
+                camera.rotation.set(CameraPosition.TOP.rotation.x, CameraPosition.TOP.rotation.y, CameraPosition.TOP.rotation.z, "XYZ")
+            } else if (currentPage === PageEnum.STORY) {
+                camera.position.set(CameraPosition.TREE_BOTTOM.position.x, CameraPosition.TREE_BOTTOM.position.y, CameraPosition.TREE_BOTTOM.position.z)
+                camera.rotation.set(CameraPosition.TREE_BOTTOM.rotation.x, CameraPosition.TREE_BOTTOM.rotation.y, CameraPosition.TREE_BOTTOM.rotation.z, "XYZ")
+            } else if (currentPage === PageEnum.SKILLS) {
+                camera.position.set(CameraPosition.FRONT.position.x, CameraPosition.FRONT.position.y, CameraPosition.FRONT.position.z)
+                camera.rotation.set(CameraPosition.FRONT.rotation.x, CameraPosition.FRONT.rotation.y, CameraPosition.FRONT.rotation.z, "XYZ")
+            } else if (currentPage === PageEnum.PROJECTS) {
+                camera.position.set(CameraPosition.ROCK_FLAT.position.x, CameraPosition.ROCK_FLAT.position.y, CameraPosition.ROCK_FLAT.position.z)
+                camera.rotation.set(CameraPosition.ROCK_FLAT.rotation.x, CameraPosition.ROCK_FLAT.rotation.y, CameraPosition.ROCK_FLAT.rotation.z, "XYZ")
+            } else if (currentPage === PageEnum.CONTACT) {
+                camera.position.set(CameraPosition.ROCK_1.position.x, CameraPosition.ROCK_1.position.y, CameraPosition.ROCK_1.position.z)
+                camera.rotation.set(CameraPosition.ROCK_1.rotation.x, CameraPosition.ROCK_1.rotation.y, CameraPosition.ROCK_1.rotation.z, "XYZ")
+            }
+        }
+    }, [currentPage])
+
+    useEffect(() => {
+        // @ts-ignore
         if (!canvasRef.current.children[0]) {
             // === THREE.JS CODE START ===
             const scene = new THREE.Scene();
-            scene.background = new THREE.Color( "#161313" );
+            scene.background = new THREE.Color("#161313");
             const canvas = canvasRef.current;
 
             /**
@@ -61,10 +87,11 @@ function ThreeScene() {
              * Camera
              */
             // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100);
-            
-            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.01, 1000 );
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
             camera.position.set(15, 2, -4)
-            camera.rotation.set(2.66, 0.2, -2.3, "XYZ")
+            //camera.rotation.set(2.66, 0.2, -2.3, "XYZ")
+            camera.rotation.set(CameraPosition.HOME.rotation.x, CameraPosition.HOME.rotation.y, CameraPosition.HOME.rotation.z, "XYZ")
 
             // gui.add(camera.position, "x").min(-30).max(30).step(0.01).name("Camera X");
             // gui.add(camera.position, "y").min(-30).max(30).step(0.01).name("Camera Y");
@@ -73,7 +100,8 @@ function ThreeScene() {
             /**
              * Renderer
              */
-            const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true, /*alpha: true*/ });
+            // @ts-ignore
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, /*alpha: true*/ });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.outputEncoding = THREE.sRGBEncoding
@@ -90,31 +118,31 @@ function ThreeScene() {
             bakedTexture.encoding = THREE.sRGBEncoding
 
             const grassParameter = {
-                depthColor : '#000000',
-                surfaceColor : '#147faa',
+                depthColor: '#000000',
+                surfaceColor: '#147faa',
             }
             const grassMaterial = new THREE.ShaderMaterial({
-                vertexShader : waterVertexShader,
-                fragmentShader : waterFragmenthader,
+                vertexShader: waterVertexShader,
+                fragmentShader: waterFragmenthader,
                 side: THREE.DoubleSide,
-                uniforms : {
-                    uTime : { value: 0.0},
-                    uBigWavesSpeed : { value: 1},
-                    uBigWavesElevation : {value: 0.12},
-                    uBigWavesFrequency : {value: new THREE.Vector2(4, 1.5)},
-                    uDepthColor: { value: new THREE.Color(grassParameter.depthColor)},
-                    uSurfaceColor: { value: new THREE.Color(grassParameter.surfaceColor)},
+                uniforms: {
+                    uTime: { value: 0.0 },
+                    uBigWavesSpeed: { value: 1 },
+                    uBigWavesElevation: { value: 0.12 },
+                    uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
+                    uDepthColor: { value: new THREE.Color(grassParameter.depthColor) },
+                    uSurfaceColor: { value: new THREE.Color(grassParameter.surfaceColor) },
                     //uColorOffset : {value: 0.35},
                     //uColorMultiplier : {value: 0.7},
                 }
             })
 
-            // gui.add(grassMaterial.uniforms.uBigWavesElevation, "value").min(0).max(1).step(0.001).name("Grass Waves Elevation");
-            // gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "x").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.X");
-            // gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "y").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.Z");
-            // gui.add(grassMaterial.uniforms.uBigWavesSpeed, "value").min(0).max(5).step(0.01).name("Grass Waves Speed");
-            // gui.addColor(grassParameter, "depthColor").name("depht Color").onChange(() => grassMaterial.uniforms.uDepthColor.value.set(grassParameter.depthColor));
-            // gui.addColor(grassParameter, "surfaceColor").name("surface Color").onChange(() => grassMaterial.uniforms.uSurfaceColor.value.set(grassParameter.surfaceColor));
+            gui.add(grassMaterial.uniforms.uBigWavesElevation, "value").min(0).max(1).step(0.001).name("Grass Waves Elevation");
+            gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "x").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.X");
+            gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "y").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.Z");
+            gui.add(grassMaterial.uniforms.uBigWavesSpeed, "value").min(0).max(5).step(0.01).name("Grass Waves Speed");
+            gui.addColor(grassParameter, "depthColor").name("depht Color").onChange(() => grassMaterial.uniforms.uDepthColor.value.set(grassParameter.depthColor));
+            gui.addColor(grassParameter, "surfaceColor").name("surface Color").onChange(() => grassMaterial.uniforms.uSurfaceColor.value.set(grassParameter.surfaceColor));
 
             /**
              * WORLD
@@ -126,7 +154,9 @@ function ThreeScene() {
                     gltf.scene.traverse((child) => {
                         //let obj = child.clone()
                         //console.log(child)
+                        // @ts-ignore
                         if (child.name === "Light1" || child.name === 'Light2') child.material = lanternMaterial;
+                        // @ts-ignore
                         else if (child.name === "ruban1" || child.name === 'ruban2' || child.name === 'ruban_base') child.material = rubanMaterial;
                         //else if (child.name === "Grass" ) child.material = grassMaterial;
                         // else if (child.name === "fullBlade1" ) {
@@ -134,6 +164,7 @@ function ThreeScene() {
                         //     blade1 = child;
                         // }
                         // else if (child.name === "fullBlade2" ) child.material = bladeWhiteMaterial;
+                        // @ts-ignore
                         else child.material = bakedMaterial
                         //child.material = bakedMaterial
                     })
@@ -145,7 +176,7 @@ function ThreeScene() {
              * GRASS
              */
 
-             gltfLoader.load(
+            gltfLoader.load(
                 'customGrass.glb', //the grass base model
                 (grass_gltf) => {
                     grass_gltf.scene.traverse((grassMesh) => {
@@ -153,9 +184,11 @@ function ThreeScene() {
                             gltfLoader.load(
                                 'grass_particles.glb', //Vertices with final model position/scale/rotation
                                 (grass_gltf) => {
+                                    // @ts-ignore
                                     let grassGeometries = [];
                                     grass_gltf.scene.traverse((particle) => {
-                                        if (particle.name !== 'Scene'){
+                                        if (particle.name !== 'Scene') {
+                                            // @ts-ignore
                                             const tGrassGeometry = grassMesh.geometry.clone();
                                             tGrassGeometry.rotateZ(particle.rotation.z);
                                             tGrassGeometry.rotateY(particle.rotation.y);
@@ -164,9 +197,10 @@ function ThreeScene() {
                                             else tGrassGeometry.scale(0.05, 0.05, 0.05);
                                             tGrassGeometry.translate(particle.position.x, particle.position.y, particle.position.z);
                                             grassGeometries.push(tGrassGeometry);
-                                            
+
                                         }
                                     });
+                                    // @ts-ignore
                                     const AllGrassGeometries = BufferGeometryUtils.mergeBufferGeometries(grassGeometries);
                                     const m = new THREE.Mesh(AllGrassGeometries, grassMaterial);
                                     scene.add(m);
@@ -180,23 +214,25 @@ function ThreeScene() {
             /**
              * Controls
              */
-            const controls = new OrbitControls(camera, canvas)
+            // @ts-ignore
+            //const controls = new OrbitControls(camera, canvas)
 
             /**
              * Animate
              */
             const clock = new THREE.Clock()
-            function animate(){
+            // @ts-ignore
+            function animate() {
                 const elapsedTime = clock.getElapsedTime()
                 grassMaterial.uniforms.uTime.value = elapsedTime;
 
                 // Update controls
-                controls.update()
+                // controls.update()
                 //controls.update(elapsedTime)
 
-                
+
                 renderer.render(scene, camera);
-                requestAnimationFrame(animate); 
+                requestAnimationFrame(animate);
             };
             animate();
 
@@ -204,7 +240,7 @@ function ThreeScene() {
             /**
              * handle threeJS frame resize
              */
-             const handleResize = () => {
+            const handleResize = () => {
                 sizes.width = window.innerWidth;
                 sizes.height = window.innerHeight;
                 camera.aspect = sizes.width / sizes.height;
@@ -212,16 +248,24 @@ function ThreeScene() {
                 renderer.setSize(sizes.width, sizes.height);
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             }
+            // @ts-ignore
+            // function onPositionChange(o) {
+
+            //     console.log("position: ", o.target.object.position);
+            //     console.log("position: ", o.target.object.rotation);
+            // }
+            //controls.addEventListener('change', onPositionChange);
             window.addEventListener('resize', handleResize);
 
             return () => {
                 window.removeEventListener('resize', handleResize);
-              };
+                //controls.removeEventListener('change', onPositionChange);
+            };
         }
-    },[])
+    }, [])
 
     return (
-        <canvas ref={canvasRef} style={{height: '100vh', width: '100vw'}}>
+        <canvas ref={canvasRef} style={{ height: '100vh', width: '100vw' }}>
 
         </canvas>
     )

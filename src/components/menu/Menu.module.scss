@@ -1,228 +1,61 @@
-.menuContainer {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-
-    .content {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        //cursor: pointer;
-
-        .menuButton {
-            $buttonHeight: calc(max(50px, 7vh));
-            position: absolute;
-
-            right: calc(max(3.5vw, 55px - #{$buttonHeight}* 0.6));
-            top: calc(50% - #{$buttonHeight}/ 2);
-
-            height: $buttonHeight;
-            width: calc(#{$buttonHeight}* 0.6);
-
-            transition: transform 1s ease-out;
-            //cursor: pointer;
-        }
-
-        .buttonOpen {
-            //right: 80%;
-            transform: rotate(90deg);
-        }
-
-        .buttonClose {
-            transition-delay: 0.5s;
-        }
-
-        .menuItems {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0px;
-            padding: 0px;
-
-            user-select: none;
-            list-style: none;
-            font-size: calc(max(3vh, 3vw));
-            font-weight: bold;
+.menu {
+    //font-family: "Play";
+    font-weight: bold;
+    font-size: large;
+    list-style: none;
+    ul {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+        padding: 0; /* Remove padding */
+        margin: 20px 5px 0px 5px; /* Remove margins */
+        li {
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margins */
+            color: rgb(236, 188, 54);
             text-align: center;
-            li {
-                overflow: hidden;
-                width: 100vw;
+            transition: color 0.3s linear;
+            cursor: pointer;
+            position: relative;
+            vertical-align: middle;
+            &:not(:last-child) {
+                &::after {
+                    position: absolute;
+                    bottom: 2px;
+                    left: 0;
+                    content: "";
+                    width: 0%;
+                    height: 3px;
+                    background: rgb(236, 188, 54);
+                    transition: width 0.2s linear;
+                }
 
-                div {
-                    text-decoration: none;
-                    position: relative;
-                    width: fit-content;
-                    margin: auto;
-                    color: white;
-                    transition: background-position 0.4s linear;;
-                    
+                &:hover {
+                    //color: white;
                     &::after {
-                        content: "";
-                        transition: right 0.4s linear, left 0.4s linear, background-color 0.4s linear;
-                        background-color: white;
-                        position: absolute;
-                        top: 0%;
-                        bottom: 0%;
-                        mix-blend-mode: exclusion;
-                        //transform: translateY(100%);
-
-                    }
-
-                    &:hover {
-                        &::after {
-                            right: -50px;
-                            left: -50px;
-                        }
-                    }
-                }
-                .color{
-                    text-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
-                    background: -webkit-linear-gradient( 45deg , #fff, #fff 33%, #ff00b3 80%, #dd8615 100% );
-                    -webkit-background-clip: text;
-                    background-size: 300% 300%;
-                    -webkit-text-fill-color: #ffffff00;
-                    &:hover {
-                        background-position: 100% 100%;
-                        //background: -webkit-linear-gradient( 45deg , #9f3a00, #ff00f2 80%);
-                        &::after {
-                            //background-color: rgb(61, 180, 14);
-                        }
-                    }
-                }
-                
-                .hoverFromLeft::after{
-                    left: -50px;
-                    right: calc(100% + 25px);
-                }
-                .hoverFromRight::after{
-                    left: calc(100% + 25px);
-                    right: -50px;
-                }
-/*                 &:nth-child(1) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1.75s forwards;
-                    }
-                }
-                &:nth-child(2) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1.5s forwards;
-                    }
-                }
-                &:nth-child(3) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1.25s forwards;
-                    }
-                }
-                &:nth-child(4) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1s forwards;
-                    }
-                }
-                @keyframes menuSlideIn {
-                    0% {
-                        transform: translateY(100%);
-                    }
-                    100% {
-                        transform: translateY(0);
-                    }
-                } */
-
-            }
-            .menuItemOpen{
-                transform: translateX(0%);
-                div {                    
-                    transform: translateY(100%);
-                }
-                &:nth-child(1) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1.75s forwards;
-                    }
-                }
-                &:nth-child(2) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1.5s forwards;
-                    }
-                }
-                &:nth-child(3) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1.25s forwards;
-                    }
-                }
-                &:nth-child(4) {
-                    div {
-                        animation: menuSlideIn 0.5s linear 1s forwards;
-                    }
-                }
-                @keyframes menuSlideIn {
-                    0% {
-                        transform: translateY(100%);
-                    }
-                    100% {
-                        transform: translateY(0);
+                        width: 100%;
+                        //background: white;
                     }
                 }
             }
-            
-            .menuItemClose{
-                transform: translateX(100%);
 
-                &:nth-child(1) {
-                    transition: transform 1s ease-in 0s;
+            &:last-child {
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: row;
+                .icon {
+                    height: 30px;
+                    width: auto;
+                    padding-right: 5px;
                 }
-                &:nth-child(2) {
-                    transition: transform 1s ease-in 0.1s;
+                span{
+                    height: 100%;
                 }
-                &:nth-child(3) {
-                    transition: transform 1s ease-in 0.2s;
-                }
-                &:nth-child(4) {
-                    transition: transform 1s ease-in 0.3s;
+                &:hover {
+                    color: white;
                 }
             }
         }
-    }
-
-    .menu {
-        position: absolute;
-        top: -1%;
-        right: -10%;
-        width: calc(max(20%, 120px));
-        height: 102%;
-        overflow: hidden;
-        background-color: rgb(0, 0, 0);
-        //cursor: pointer;
-        transform: matrix(1, 0, -0.08715, 0.99619, 0, 0);
-        //transition: width 0.8s ease-in;
-        transition: width 1.2s cubic-bezier(.3,.32,.44,-0.52);
-    }
-
-    .menuOpen {
-        width: 120vw;
-    }
-
-    .menuClose {
-        transition-delay: 0.5s;
-    }
-
-    .sceneContainer {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        pointer-events: none;
-        background-color: transparent;
-        transition: opacity 1s ease-out;
-    }
-
-    .sceneOpen {
-        transition-delay: 1s;
-        opacity: 1;
     }
 }
