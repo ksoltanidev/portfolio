@@ -18,8 +18,6 @@ import {BufferGeometryUtils} from 'three/examples/jsm/utils/BufferGeometryUtils.
 
 import waterVertexShader from "../../shaders/grass/vertex.js"
 import waterFragmenthader from "../../shaders/grass/fragment.js"
-console.log(waterVertexShader)
-console.log(waterVertexShader)
 
 function ThreeScene() {
     const canvasRef = useRef(null);
@@ -28,10 +26,9 @@ function ThreeScene() {
      * Base
      */
     // Debug
-    const gui = new dat.GUI({
-        width: 400
-    })
-
+    // const gui = new dat.GUI({
+    //     width: 400,
+    // })
 
     /**
      * Sizes
@@ -45,7 +42,7 @@ function ThreeScene() {
         if (!canvasRef.current.children[0]) {
             // === THREE.JS CODE START ===
             const scene = new THREE.Scene();
-            scene.background = new THREE.Color( 0x000000 );
+            scene.background = new THREE.Color( "#161313" );
             const canvas = canvasRef.current;
 
             /**
@@ -60,7 +57,6 @@ function ThreeScene() {
              * Textures
              */
             const bakedTexture = textureLoader.load('world.jpg')
-            console.log(bakedTexture);
             /**
              * Camera
              */
@@ -113,12 +109,12 @@ function ThreeScene() {
                 }
             })
 
-            gui.add(grassMaterial.uniforms.uBigWavesElevation, "value").min(0).max(1).step(0.001).name("Grass Waves Elevation");
-            gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "x").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.X");
-            gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "y").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.Z");
-            gui.add(grassMaterial.uniforms.uBigWavesSpeed, "value").min(0).max(5).step(0.01).name("Grass Waves Speed");
-            gui.addColor(grassParameter, "depthColor").name("depht Color").onChange(() => grassMaterial.uniforms.uDepthColor.value.set(grassParameter.depthColor));
-            gui.addColor(grassParameter, "surfaceColor").name("surface Color").onChange(() => grassMaterial.uniforms.uSurfaceColor.value.set(grassParameter.surfaceColor));
+            // gui.add(grassMaterial.uniforms.uBigWavesElevation, "value").min(0).max(1).step(0.001).name("Grass Waves Elevation");
+            // gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "x").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.X");
+            // gui.add(grassMaterial.uniforms.uBigWavesFrequency.value, "y").min(0.1).max(20).step(0.01).name("Grass Waves Frequency.Z");
+            // gui.add(grassMaterial.uniforms.uBigWavesSpeed, "value").min(0).max(5).step(0.01).name("Grass Waves Speed");
+            // gui.addColor(grassParameter, "depthColor").name("depht Color").onChange(() => grassMaterial.uniforms.uDepthColor.value.set(grassParameter.depthColor));
+            // gui.addColor(grassParameter, "surfaceColor").name("surface Color").onChange(() => grassMaterial.uniforms.uSurfaceColor.value.set(grassParameter.surfaceColor));
 
             /**
              * WORLD
