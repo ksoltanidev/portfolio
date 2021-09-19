@@ -17,6 +17,8 @@ import waterVertexShader from "../../shaders/grass/vertex.js"
 import waterFragmenthader from "../../shaders/grass/fragment.js"
 import PageEnum from "../../types/PageEnum";
 import CameraPosition from "./cameraPositions"
+import { gsap } from "gsap";
+import { duration } from "@mui/material";
 
 type Props = {
     currentPage: PageEnum
@@ -45,20 +47,20 @@ function ThreeScene({ currentPage }: Props) {
     useEffect(() => {
         if (CameraPosition && camera) {
             if (currentPage === PageEnum.HOME) {
-                camera.position.set(CameraPosition.TOP.position.x, CameraPosition.TOP.position.y, CameraPosition.TOP.position.z)
-                camera.rotation.set(CameraPosition.TOP.rotation.x, CameraPosition.TOP.rotation.y, CameraPosition.TOP.rotation.z, "XYZ")
+                gsap.to(camera.position, CameraPosition.TOP.position);
+                gsap.to(camera.rotation, CameraPosition.TOP.rotation);
             } else if (currentPage === PageEnum.STORY) {
-                camera.position.set(CameraPosition.TREE_BOTTOM.position.x, CameraPosition.TREE_BOTTOM.position.y, CameraPosition.TREE_BOTTOM.position.z)
-                camera.rotation.set(CameraPosition.TREE_BOTTOM.rotation.x, CameraPosition.TREE_BOTTOM.rotation.y, CameraPosition.TREE_BOTTOM.rotation.z, "XYZ")
+                gsap.to(camera.position, CameraPosition.TREE_BOTTOM.position);
+                gsap.to(camera.rotation, CameraPosition.TREE_BOTTOM.rotation);
             } else if (currentPage === PageEnum.SKILLS) {
-                camera.position.set(CameraPosition.FRONT.position.x, CameraPosition.FRONT.position.y, CameraPosition.FRONT.position.z)
-                camera.rotation.set(CameraPosition.FRONT.rotation.x, CameraPosition.FRONT.rotation.y, CameraPosition.FRONT.rotation.z, "XYZ")
+                gsap.to(camera.position, CameraPosition.FRONT.position)
+                gsap.to(camera.rotation, CameraPosition.FRONT.rotation);
             } else if (currentPage === PageEnum.PROJECTS) {
-                camera.position.set(CameraPosition.ROCK_FLAT.position.x, CameraPosition.ROCK_FLAT.position.y, CameraPosition.ROCK_FLAT.position.z)
-                camera.rotation.set(CameraPosition.ROCK_FLAT.rotation.x, CameraPosition.ROCK_FLAT.rotation.y, CameraPosition.ROCK_FLAT.rotation.z, "XYZ")
+                gsap.to(camera.position, CameraPosition.ROCK_FLAT.position);
+                gsap.to(camera.rotation, CameraPosition.ROCK_FLAT.rotation);
             } else if (currentPage === PageEnum.CONTACT) {
-                camera.position.set(CameraPosition.ROCK_1.position.x, CameraPosition.ROCK_1.position.y, CameraPosition.ROCK_1.position.z)
-                camera.rotation.set(CameraPosition.ROCK_1.rotation.x, CameraPosition.ROCK_1.rotation.y, CameraPosition.ROCK_1.rotation.z, "XYZ")
+                gsap.to(camera.position, CameraPosition.ROCK_1.position)
+                gsap.to(camera.rotation, CameraPosition.ROCK_1.rotation);
             }
         }
     }, [currentPage])
@@ -90,7 +92,6 @@ function ThreeScene({ currentPage }: Props) {
 
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
             camera.position.set(15, 2, -4)
-            //camera.rotation.set(2.66, 0.2, -2.3, "XYZ")
             camera.rotation.set(CameraPosition.HOME.rotation.x, CameraPosition.HOME.rotation.y, CameraPosition.HOME.rotation.z, "XYZ")
 
             // gui.add(camera.position, "x").min(-30).max(30).step(0.01).name("Camera X");
@@ -215,7 +216,7 @@ function ThreeScene({ currentPage }: Props) {
              * Controls
              */
             // @ts-ignore
-            //const controls = new OrbitControls(camera, canvas)
+            const controls = new OrbitControls(camera, canvas)
 
             /**
              * Animate
@@ -227,8 +228,7 @@ function ThreeScene({ currentPage }: Props) {
                 grassMaterial.uniforms.uTime.value = elapsedTime;
 
                 // Update controls
-                // controls.update()
-                //controls.update(elapsedTime)
+                //controls.update()
 
 
                 renderer.render(scene, camera);
@@ -249,17 +249,16 @@ function ThreeScene({ currentPage }: Props) {
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             }
             // @ts-ignore
-            // function onPositionChange(o) {
-
-            //     console.log("position: ", o.target.object.position);
-            //     console.log("position: ", o.target.object.rotation);
-            // }
-            //controls.addEventListener('change', onPositionChange);
+            function onPositionChange(o) {
+                console.log("position: ", o.target.object.position);
+                console.log("position: ", o.target.object.rotation);
+            }
+            controls.addEventListener('change', onPositionChange);
             window.addEventListener('resize', handleResize);
 
             return () => {
                 window.removeEventListener('resize', handleResize);
-                //controls.removeEventListener('change', onPositionChange);
+                controls.removeEventListener('change', onPositionChange);
             };
         }
     }, [])

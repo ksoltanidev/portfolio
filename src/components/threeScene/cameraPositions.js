@@ -57,6 +57,18 @@ const cameraPositions = {
             y: 0,
             z: -2.97
         }
+        /**
+         *         position: {
+            x: 8.4,
+            y: 1.3,
+            z: 2.7
+        },
+        rotation: {
+            x: -1.7,
+            y: 0,
+            z: -2.97
+        }
+         */
     },
     FRONT : {
         position: {
