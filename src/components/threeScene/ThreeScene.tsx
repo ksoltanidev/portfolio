@@ -90,10 +90,31 @@ function ThreeScene({ currentPage }: Props) {
              */
             // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100);
 
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 40000);
             camera.position.set(15, 2, -4)
             camera.rotation.set(CameraPosition.HOME.rotation.x, CameraPosition.HOME.rotation.y, CameraPosition.HOME.rotation.z, "XYZ")
 
+            const skyboxMaterials = [
+                // textureLoader.load("./skybox/space_ft.png"),
+                // textureLoader.load("./skybox/space_bk.png"),
+                // textureLoader.load("./skybox/space_up.png"),
+                // textureLoader.load("./skybox/space_dn.png"),
+                // textureLoader.load("./skybox/space_rt.png"),
+                // textureLoader.load("./skybox/space_lf.png")
+                textureLoader.load("./skybox1/1.png"),
+                textureLoader.load("./skybox1/2.png"),
+                textureLoader.load("./skybox1/3.png"),
+                textureLoader.load("./skybox1/4.png"),
+                textureLoader.load("./skybox1/5.png"),
+                textureLoader.load("./skybox1/6.png")
+            ].map(t => new THREE.MeshBasicMaterial({ map: t }));
+            skyboxMaterials.forEach(m => m.side = THREE.BackSide)
+
+            console.log(skyboxMaterials)
+
+            const skyboxGeometry = new THREE.BoxGeometry(20000, 20000, 20000);
+            const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterials)
+            scene.add(skybox)
             // gui.add(camera.position, "x").min(-30).max(30).step(0.01).name("Camera X");
             // gui.add(camera.position, "y").min(-30).max(30).step(0.01).name("Camera Y");
             // gui.add(camera.position, "z").min(-30).max(30).step(0.01).name("Camera Z");
@@ -236,7 +257,6 @@ function ThreeScene({ currentPage }: Props) {
             };
             animate();
 
-
             /**
              * handle threeJS frame resize
              */
@@ -254,18 +274,17 @@ function ThreeScene({ currentPage }: Props) {
                 console.log("position: ", o.target.object.rotation);
             }
             controls.addEventListener('change', onPositionChange);
-            window.addEventListener('resize', handleResize);
 
+            window.addEventListener('resize', handleResize);
             return () => {
                 window.removeEventListener('resize', handleResize);
-                controls.removeEventListener('change', onPositionChange);
+                 controls.removeEventListener('change', onPositionChange);
             };
         }
     }, [])
 
     return (
         <canvas ref={canvasRef} style={{ height: '100vh', width: '100vw' }}>
-
         </canvas>
     )
 }

@@ -12,6 +12,7 @@ function Menu({onPageClick}: Props) {
     return (
         <div className={styles.menu}>
             <ul>
+                <li onClick={() => onPageClick(PageEnum.HOME)}>Accueil</li>
                 <li onClick={() => onPageClick(PageEnum.STORY)}>Mon parcours</li>
                 <li onClick={() => onPageClick(PageEnum.SKILLS)}>Mes compétences</li>
                 <li onClick={() => onPageClick(PageEnum.PROJECTS)}>Mes travaux</li>

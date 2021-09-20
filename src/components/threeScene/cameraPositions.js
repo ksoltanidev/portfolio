@@ -53,9 +53,9 @@ const cameraPositions = {
             z: 2.7
         },
         rotation: {
-            x: -1.7,
+            x: -1.6,
             y: 0,
-            z: -2.97
+            z: -3.1
         }
         /**
          *         position: {
