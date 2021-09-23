@@ -101,12 +101,12 @@ function ThreeScene({ currentPage }: Props) {
                 // textureLoader.load("./skybox/space_dn.png"),
                 // textureLoader.load("./skybox/space_rt.png"),
                 // textureLoader.load("./skybox/space_lf.png")
-                textureLoader.load("./skybox1/1.png"),
-                textureLoader.load("./skybox1/2.png"),
-                textureLoader.load("./skybox1/3.png"),
-                textureLoader.load("./skybox1/4.png"),
-                textureLoader.load("./skybox1/5.png"),
-                textureLoader.load("./skybox1/6.png")
+                textureLoader.load("./skybox2/1.png"),
+                textureLoader.load("./skybox2/3.png"),
+                textureLoader.load("./skybox2/4.png"),//
+                textureLoader.load("./skybox2/2.png"),
+                textureLoader.load("./skybox2/5.png"),
+                textureLoader.load("./skybox2/6.png")//
             ].map(t => new THREE.MeshBasicMaterial({ map: t }));
             skyboxMaterials.forEach(m => m.side = THREE.BackSide)
 
