@@ -18,15 +18,13 @@ import waterFragmenthader from "../../shaders/grass/fragment.js"
 import PageEnum from "../../types/PageEnum";
 import CameraPosition from "./cameraPositions"
 import { gsap } from "gsap";
-import { duration } from "@mui/material";
 
 type Props = {
     currentPage: PageEnum
 }
-let camera: THREE.PerspectiveCamera;
+let Fakecamera: THREE.PerspectiveCamera;
 
 function ThreeScene({ currentPage }: Props) {
-    //const [camera, setCamera] = useState<THREE.PerspectiveCamera>()
     const canvasRef = useRef(null);
 
     /**
@@ -45,22 +43,32 @@ function ThreeScene({ currentPage }: Props) {
     }
 
     useEffect(() => {
-        if (CameraPosition && camera) {
+        if (CameraPosition && Fakecamera) {
             if (currentPage === PageEnum.HOME) {
-                gsap.to(camera.position, CameraPosition.TOP.position);
-                gsap.to(camera.rotation, CameraPosition.TOP.rotation);
+                //gsap.to(camera.position, CameraPosition.TOP.position);
+                //gsap.to(camera.rotation, CameraPosition.TOP.rotation);
+                gsap.to(Fakecamera.position, CameraPosition.TOP.position);
+                gsap.to(Fakecamera.rotation, CameraPosition.TOP.rotation);
             } else if (currentPage === PageEnum.STORY) {
-                gsap.to(camera.position, CameraPosition.TREE_BOTTOM.position);
-                gsap.to(camera.rotation, CameraPosition.TREE_BOTTOM.rotation);
+                //gsap.to(camera.position, CameraPosition.TREE_BOTTOM.position);
+                //gsap.to(camera.rotation, CameraPosition.TREE_BOTTOM.rotation);
+                gsap.to(Fakecamera.position, CameraPosition.TREE_BOTTOM.position);
+                gsap.to(Fakecamera.rotation, CameraPosition.TREE_BOTTOM.rotation);
             } else if (currentPage === PageEnum.SKILLS) {
-                gsap.to(camera.position, CameraPosition.FRONT.position)
-                gsap.to(camera.rotation, CameraPosition.FRONT.rotation);
+                //gsap.to(camera.position, CameraPosition.FRONT.position)
+                ///gsap.to(camera.rotation, CameraPosition.FRONT.rotation);
+                gsap.to(Fakecamera.position, CameraPosition.FRONT.position)
+                gsap.to(Fakecamera.rotation, CameraPosition.FRONT.rotation);
             } else if (currentPage === PageEnum.PROJECTS) {
-                gsap.to(camera.position, CameraPosition.ROCK_FLAT.position);
-                gsap.to(camera.rotation, CameraPosition.ROCK_FLAT.rotation);
+                //gsap.to(camera.position, CameraPosition.ROCK_FLAT.position);
+                //gsap.to(camera.rotation, CameraPosition.ROCK_FLAT.rotation);
+                gsap.to(Fakecamera.position, CameraPosition.ROCK_FLAT.position);
+                gsap.to(Fakecamera.rotation, CameraPosition.ROCK_FLAT.rotation);
             } else if (currentPage === PageEnum.CONTACT) {
-                gsap.to(camera.position, CameraPosition.ROCK_1.position)
-                gsap.to(camera.rotation, CameraPosition.ROCK_1.rotation);
+                //gsap.to(camera.position, CameraPosition.ROCK_1.position)
+                //gsap.to(camera.rotation, CameraPosition.ROCK_1.rotation);
+                gsap.to(Fakecamera.position, CameraPosition.ROCK_1.position)
+                gsap.to(Fakecamera.rotation, CameraPosition.ROCK_1.rotation);
             }
         }
     }, [currentPage])
@@ -90,11 +98,15 @@ function ThreeScene({ currentPage }: Props) {
              */
             // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100);
 
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 40000);
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 40000);
             camera.position.set(15, 2, -4)
             camera.rotation.set(CameraPosition.HOME.rotation.x, CameraPosition.HOME.rotation.y, CameraPosition.HOME.rotation.z, "XYZ")
 
-            const skyboxMaterials = [
+            Fakecamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 40000);
+            Fakecamera.position.set(15, 2, -4)
+            Fakecamera.rotation.set(CameraPosition.HOME.rotation.x, CameraPosition.HOME.rotation.y, CameraPosition.HOME.rotation.z, "XYZ")
+
+            const skyboxTextures = [
                 // textureLoader.load("./skybox/space_ft.png"),
                 // textureLoader.load("./skybox/space_bk.png"),
                 // textureLoader.load("./skybox/space_up.png"),
@@ -103,11 +115,15 @@ function ThreeScene({ currentPage }: Props) {
                 // textureLoader.load("./skybox/space_lf.png")
                 textureLoader.load("./skybox2/1.png"),
                 textureLoader.load("./skybox2/3.png"),
-                textureLoader.load("./skybox2/4.png"),//
+                textureLoader.load("./skybox2/4.png"),
                 textureLoader.load("./skybox2/2.png"),
                 textureLoader.load("./skybox2/5.png"),
-                textureLoader.load("./skybox2/6.png")//
-            ].map(t => new THREE.MeshBasicMaterial({ map: t }));
+                textureLoader.load("./skybox2/6.png")
+            ]
+            skyboxTextures.forEach(t => {
+                t.encoding = THREE.sRGBEncoding;
+            })
+            const skyboxMaterials = skyboxTextures.map(t => new THREE.MeshBasicMaterial({ map: t }));
             skyboxMaterials.forEach(m => m.side = THREE.BackSide)
 
             console.log(skyboxMaterials)
@@ -237,8 +253,12 @@ function ThreeScene({ currentPage }: Props) {
              * Controls
              */
             // @ts-ignore
-            const controls = new OrbitControls(camera, canvas)
-
+            // const controls = new OrbitControls(camera, canvas)
+            const cameraSmallMovement = { x: 0, y: 0 }
+            const onMouseMove = (e: MouseEvent) => {
+                cameraSmallMovement.x = ((e.clientX * 2 / window.innerWidth) - 1) * 0.02;
+                cameraSmallMovement.y = ((e.clientY * 2 / window.innerHeight) - 1) * 0.02;
+            }
             /**
              * Animate
              */
@@ -250,7 +270,24 @@ function ThreeScene({ currentPage }: Props) {
 
                 // Update controls
                 //controls.update()
+                // skybox.rotation.x =  skybox.rotation.x + 0.00003
+                // skybox.rotation.y =  skybox.rotation.y + 0.00002
+                // skybox.rotation.z =  skybox.rotation.z + 0.00006
 
+                //Update camera mvt
+                camera.position.set(
+                    Fakecamera.position.x,
+                    Fakecamera.position.y,
+                    Fakecamera.position.z
+                )
+                camera.rotation.set(
+                    Fakecamera.rotation.x,
+                    Fakecamera.rotation.y,
+                    Fakecamera.rotation.z,
+                    "XYZ"
+                )
+                camera.rotateX(- cameraSmallMovement.y * 2)
+                camera.rotateY(- cameraSmallMovement.x * 2)
 
                 renderer.render(scene, camera);
                 requestAnimationFrame(animate);
@@ -269,16 +306,17 @@ function ThreeScene({ currentPage }: Props) {
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             }
             // @ts-ignore
-            function onPositionChange(o) {
-                console.log("position: ", o.target.object.position);
-                console.log("position: ", o.target.object.rotation);
-            }
-            controls.addEventListener('change', onPositionChange);
-
+            // function onPositionChange(o) {
+            //     console.log("position: ", o.target.object.position);
+            //     console.log("position: ", o.target.object.rotation);
+            // }
+            //controls.addEventListener('change', onPositionChange);
+            window.addEventListener("mousemove", onMouseMove);
             window.addEventListener('resize', handleResize);
             return () => {
+                window.removeEventListener("mousemove", onMouseMove);
                 window.removeEventListener('resize', handleResize);
-                 controls.removeEventListener('change', onPositionChange);
+                //controls.removeEventListener('change', onPositionChange);
             };
         }
     }, [])
