@@ -15,7 +15,7 @@ function Menu({onPageClick}: Props) {
                 <li onClick={() => onPageClick(PageEnum.HOME)}>Accueil</li>
                 <li onClick={() => onPageClick(PageEnum.STORY)}>Mon parcours</li>
                 <li onClick={() => onPageClick(PageEnum.SKILLS)}>Mes compétences</li>
-                <li onClick={() => onPageClick(PageEnum.PROJECTS)}>Mes travaux</li>
+                {/* <li onClick={() => onPageClick(PageEnum.PROJECTS)}>Mes travaux</li> */}
                 <li onClick={() => onPageClick(PageEnum.CONTACT)}>Me contacter</li>
                 <li><LanguageIcon className={styles.icon} /><span>FR</span></li>
             </ul>

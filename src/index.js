@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import Homepage from './pages/Homepage.tsx'
+import Page from './pages/Page.tsx'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +14,7 @@ ReactDOM.render(
         </Route>
       </Switch>
     </Router> */}
-    <Homepage/>
+    <Page/>
   </React.StrictMode>,
   document.getElementById('root')
 );

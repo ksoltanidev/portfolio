@@ -1,0 +1,18 @@
+.content {
+    color: rgb(236, 188, 54);
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+    font-size: 1.6em;
+    h1 {
+        flex-grow: 1;
+        //font-weight: bold;
+        //font-size: large;
+    }
+    p{
+        flex-grow: 1;
+        font-weight: bold;
+    }
+}
