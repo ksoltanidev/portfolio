@@ -9,6 +9,13 @@
         justify-content: space-around;
         padding: 0; /* Remove padding */
         margin: 20px 5px 0px 5px; /* Remove margins */
+
+        .currentPageLink {            
+            &::after {
+                width: 100% !important;
+            }
+        }
+
         li {
             list-style-type: none; /* Remove bullets */
             padding: 0; /* Remove padding */

@@ -4,6 +4,7 @@ import ThreeScene from "../components/threeScene/ThreeScene";
 import Menu from "../components/menu/Menu";
 import PageEnum from "../types/PageEnum";
 import HomePage from "../components/HomePage/HomePage";
+import GithubLink from "../components/GithubLink/GithubLink";
 
 function Page() {
     const [page, setPage] = useState<PageEnum>(PageEnum.HOME)
@@ -28,9 +29,12 @@ function Page() {
                 <ThreeScene currentPage={page} />
             </div>
             <div className={styles.webContent}>
-                <Menu onPageClick={setPage} />
+                <Menu onPageClick={setPage} currentPage={page}/>
                 <div className={styles.pageContent}>
                     {renderContent()}
+                </div>
+                <div className={styles.githubLink}>
+                    <GithubLink/>
                 </div>
             </div>
         </div>

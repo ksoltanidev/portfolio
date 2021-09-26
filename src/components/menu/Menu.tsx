@@ -5,18 +5,36 @@ import PageEnum from '../../types/PageEnum';
 
 type Props = {
     onPageClick: React.Dispatch<React.SetStateAction<PageEnum>>
+    currentPage: PageEnum,
 }
 
-function Menu({onPageClick}: Props) {
+function Menu({ onPageClick, currentPage }: Props) {
+
+    function getMenuClassName(page: PageEnum){
+        if (page === currentPage) return styles.currentPageLink;
+        else return styles.notCurrentPageLink;
+    }
 
     return (
         <div className={styles.menu}>
             <ul>
-                <li onClick={() => onPageClick(PageEnum.HOME)}>Accueil</li>
-                <li onClick={() => onPageClick(PageEnum.STORY)}>Mon parcours</li>
-                <li onClick={() => onPageClick(PageEnum.SKILLS)}>Mes compétences</li>
+                <li className={getMenuClassName(PageEnum.HOME)}
+                    onClick={() => onPageClick(PageEnum.HOME)}>
+                    Accueil
+                </li>
+                <li className={getMenuClassName(PageEnum.STORY)}
+                    onClick={() => onPageClick(PageEnum.STORY)}>
+                    Mon parcours
+                </li>
+                <li className={getMenuClassName(PageEnum.SKILLS)}
+                    onClick={() => onPageClick(PageEnum.SKILLS)}>
+                    Mes compétences
+                </li>
                 {/* <li onClick={() => onPageClick(PageEnum.PROJECTS)}>Mes travaux</li> */}
-                <li onClick={() => onPageClick(PageEnum.CONTACT)}>Me contacter</li>
+                <li className={getMenuClassName(PageEnum.CONTACT)}
+                    onClick={() => onPageClick(PageEnum.CONTACT)}>
+                    Me contacter
+                </li>
                 <li><LanguageIcon className={styles.icon} /><span>FR</span></li>
             </ul>
         </div>

@@ -1,0 +1,45 @@
+.content {
+    a {
+        color: rgb(236, 188, 54);
+        text-align: end;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        cursor: pointer;
+        text-decoration: none;
+        background-color: transparent;
+
+        .githubIcon {
+            height: 1em;
+            width: 1em;
+            transform: translateY(-0.1em);
+            margin-right: 5px;
+        }
+
+        p {
+            flex-grow: 1;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        &::after {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            content: "";
+            width: 0%;
+            height: 3px;
+            background: rgb(236, 188, 54);
+            transition: width 0.2s linear;
+        }
+
+        &:hover {
+            //color: white;
+            &::after {
+                width: 100%;
+                //background: white;
+            }
+        }
+    }
+}
