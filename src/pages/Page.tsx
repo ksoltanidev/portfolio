@@ -5,6 +5,7 @@ import Menu from "../components/menu/Menu";
 import PageEnum from "../types/PageEnum";
 import HomePage from "../components/HomePage/HomePage";
 import GithubLink from "../components/GithubLink/GithubLink";
+import SkillsPage from "../components/SkillsPage/SkillsPage";
 
 function Page() {
     const [page, setPage] = useState<PageEnum>(PageEnum.HOME)
@@ -12,7 +13,8 @@ function Page() {
     function renderContent() {
         if (page === PageEnum.HOME)
             return <HomePage/>
-            
+        else if (page === PageEnum.SKILLS)
+            return <SkillsPage/>
 
         else {
             return (
