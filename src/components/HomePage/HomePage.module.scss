@@ -16,3 +16,15 @@
         font-weight: bold;
     }
 }
+
+@media (max-height: 600px){
+    .content{
+        top: 50%;
+    }
+}
+
+@media (max-height: 400px){
+    .content{
+        font-size: 1.2em;
+    }
+}
