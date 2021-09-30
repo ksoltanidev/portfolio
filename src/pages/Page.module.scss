@@ -25,6 +25,9 @@
 
         .pageContent{
             flex-grow: 1;
+            height: 0px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         .githubLink {
             position: absolute;

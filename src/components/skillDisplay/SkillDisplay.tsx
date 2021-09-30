@@ -17,8 +17,17 @@ type Props = {
 
 function SkillDisplay({ skill }: Props) {
 
+    function getScoreClass(){
+        if (skill.score > 4 ) return styles.score5;
+        if (skill.score > 3 ) return styles.score4;
+        if (skill.score > 2 ) return styles.score3;
+        if (skill.score > 1 ) return styles.score2;
+        if (skill.score > 0 ) return styles.score1;
+        else return styles.score0;
+    }
+
     return (
-        <div className={styles.skillContent}>
+        <div className={[styles.skillContent, getScoreClass()].join(' ')}>
             <GitHubIcon className={styles.skillIcon} />
             <div className={styles.titleAndStars}>
                 <h3>{skill.name}</h3>

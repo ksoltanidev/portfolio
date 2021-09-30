@@ -1,20 +1,12 @@
-.content {
+.container {
     color: rgb(236, 188, 54);
-    text-align: center;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate3d(-50%,-50%,0);
-    font-size: 1.6em;
     animation: fadeIn 0.3s linear forwards;
-    h1 {
-        flex-grow: 1;
-        //font-weight: bold;
-        //font-size: large;
-    }
-    p{
-        flex-grow: 1;
-        font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .skillSection{
+        padding: 80px;
     }
 
     @keyframes fadeIn {
@@ -24,17 +16,5 @@
         100%{
             opacity: 100%;
         }
-    }
-}
-
-@media (max-height: 600px){
-    .content{
-        top: 50%;
-    }
-}
-
-@media (max-height: 400px){
-    .content{
-        font-size: 1.2em;
     }
 }

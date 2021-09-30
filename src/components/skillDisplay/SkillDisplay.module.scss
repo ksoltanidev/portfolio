@@ -1,8 +1,34 @@
+//#0eff00
+//#9bff00
+//
+//#ff7700
+//#f00
+//#9b9b9b
+
+//.score5{
+//    color: #0eff00
+//}
+//.score4{
+//    color: #9bff00
+//}
+//.score3{
+//}
+//.score2{
+//    color: #ff7700
+//}
+//.score1{
+//    color: #f00
+//}
+//.score0{
+//    color: #9b9b9b
+//}
+
 .skillContent{
     display: flex;
     flex-direction: row;
     padding: 10px;
     transition: all 0.3s ease-out;
+    color: #ffa709;
     .skillIcon{
         height: 3em;
         width: 3em;
@@ -13,6 +39,7 @@
         flex-direction: column;
         flex-wrap: nowrap;
         h3 {
+            transition: 0.2s all 0.2s ease-out, color 0.2s ease-out;
             font-size: 0.8em;
             margin: 0;
             padding: 0;
@@ -30,5 +57,9 @@
     &:hover{
         transform: scale(1.2);
         color: rgb(238, 211, 138);;
+        h3 {
+            font-size: 1.2em;
+            transform: translateY(5px);
+        }
     }
 }
