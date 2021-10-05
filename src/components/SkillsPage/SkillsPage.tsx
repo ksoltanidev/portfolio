@@ -7,60 +7,77 @@ function SkillsPage() {
     const codingSkills: hardskillType[] = [
         {
             name: "React",
+            icon: "react"
         },
         {
             name: "NodeJs",
+            icon: "nodejs"
         },
         {
             name: "ThreeJs",
+            icon: "threejs"
         },
         {
             name: "TypeScript",
+            icon: "typescript"
         },
         {
             name: "JavaScript",
+            icon: "javascript"
         },
         {
             name: "HTML",
+            icon: "html"
         },
         {
             name: "CSS / SASS",
+            icon: "sass"
         },
         {
             name: "C#",
+            icon: "csharp"
         },
         {
             name: "Java",
+            icon: "java"
         },
     ]
 
     const techSkills: hardskillType[] = [
         {
             name: "Docker",
+            icon: "docker"
         },
         {
             name: "GIT",
+            icon: "git"
         },
         {
             name: "Blender",
+            icon: "blender"
         },
         {
             name: "Unity",
+            icon: "unity"
         },
         {
             name: "GCP",
+            icon: "gcp"
         },
     ]
 
     const softSkills: hardskillType[] = [
         {
             name: "Good social skills",
+            icon: "social"
         },
         {
             name: "Team & Project Management",
+            icon: "management"
         },
         {
             name: "Fluent english",
+            icon: "english"
         }
     ]
 

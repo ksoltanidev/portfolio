@@ -5,9 +5,28 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import {Score} from "@mui/icons-material";
+import { ReactComponent as Git} from "./icons/git.svg";
+import { ReactComponent as Blender} from "./icons/blender.svg";
+import { ReactComponent as Csharp} from "./icons/csharp.svg";
+import { ReactComponent as Docker} from "./icons/docker.svg";
+import { ReactComponent as English} from "./icons/english.svg";
+import { ReactComponent as Gcp} from "./icons/gcp.svg";
+import { ReactComponent as Html} from "./icons/html.svg";
+import { ReactComponent as Java} from "./icons/java.svg";
+import { ReactComponent as Javascript} from "./icons/javascript.svg";
+import { ReactComponent as Management} from "./icons/management.svg";
+import { ReactComponent as Nodejs} from "./icons/nodejs.svg";
+import { ReactComponent as ReactIcon} from "./icons/react.svg";
+import { ReactComponent as Sass} from "./icons/sass.svg";
+import { ReactComponent as Social} from "./icons/social.svg";
+import { ReactComponent as Threejs} from "./icons/threejs.svg";
+import { ReactComponent as Typescript} from "./icons/typescript.svg";
+import { ReactComponent as Unity} from "./icons/unity.svg";
+
 
 export type hardskillType = {
     name: string,
+    icon?: string,
 }
 
 type Props = {
@@ -27,9 +46,29 @@ function SkillDisplay({skill}: Props) {
     //     } else return styles.noScore;
     // }
 
+    function RenderIcon(icon: string){
+        if (icon === "blender") return <Blender className={styles.skillIcon}/>
+        if (icon === "unity") return <Unity className={styles.skillIcon}/>
+        else if (icon === "typescript") return <Typescript className={styles.skillIcon}/>
+        else if (icon === "threejs") return <Threejs className={styles.skillIcon}/>
+        else if (icon === "social") return <Social className={styles.skillIcon}/>
+        else if (icon === "sass") return <Sass className={styles.skillIcon}/>
+        else if (icon === "react") return <ReactIcon className={styles.skillIcon}/>
+        else if (icon === "nodejs") return <Nodejs className={styles.skillIcon}/>
+        else if (icon === "management") return <Management className={styles.skillIcon}/>
+        else if (icon === "javascript") return <Javascript className={styles.skillIcon}/>
+        else if (icon === "java") return <Java className={styles.skillIcon}/>
+        else if (icon === "html") return <Html className={styles.skillIcon}/>
+        else if (icon === "gcp") return <Gcp className={styles.skillIcon}/>
+        else if (icon === "english") return <English className={styles.skillIcon}/>
+        else if (icon === "docker") return <Docker className={styles.skillIcon}/>
+        else if (icon === "csharp") return <Csharp className={styles.skillIcon}/>
+        else return <Git className={styles.skillIcon}/>
+    }
+
     return (
         <div className={styles.skillContent}>
-            <GitHubIcon className={styles.skillIcon}/>
+            {skill.icon && RenderIcon(skill.icon)}
             <div className={styles.titleAndStars}>
                 <h3>{skill.name}</h3>
             </div>
