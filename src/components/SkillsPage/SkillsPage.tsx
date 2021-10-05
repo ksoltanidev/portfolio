@@ -2,83 +2,65 @@ import React, {useEffect, useState} from "react";
 import SkillDisplay from "../skillDisplay/SkillDisplay";
 import styles from './SkillsPage.module.scss';
 import {hardskillType} from "../skillDisplay/SkillDisplay"
-
 function SkillsPage() {
 
     const codingSkills: hardskillType[] = [
         {
             name: "React",
-            score: 4
         },
         {
-            name: "NodeJS",
-            score: 3
+            name: "NodeJs",
         },
         {
-            name: "Javascript",
-            score: 5
+            name: "ThreeJs",
+        },
+        {
+            name: "TypeScript",
+        },
+        {
+            name: "JavaScript",
         },
         {
             name: "HTML",
-            score: 5
         },
         {
             name: "CSS / SASS",
-            score: 5
         },
         {
             name: "C#",
-            score: 3
         },
         {
             name: "Java",
-            score: 2
         },
     ]
 
     const techSkills: hardskillType[] = [
         {
-            name: "React",
-            score: 4
+            name: "Docker",
         },
         {
-            name: "NodeJS",
-            score: 3
+            name: "GIT",
         },
         {
-            name: "Javascript",
-            score: 5
+            name: "Blender",
         },
         {
-            name: "HTML",
-            score: 5
+            name: "Unity",
         },
         {
-            name: "CSS",
-            score: 5
-        }
+            name: "GCP",
+        },
     ]
 
     const softSkills: hardskillType[] = [
         {
-            name: "React",
-            score: 4
+            name: "Good social skills",
         },
         {
-            name: "NodeJS",
-            score: 3
+            name: "Team & Project Management",
         },
         {
-            name: "Javascript",
-            score: 5
-        },
-        {
-            name: "HTML",
-            score: 5
-        },
-        {
-            name: "CSS",
-            score: 5
+            name: "Fluent english",
         }
     ]
 

@@ -1,3 +1,5 @@
+@import '../../styles/global';
+
 .menu {
     //font-family: "Play";
     font-weight: bold;
@@ -20,7 +22,7 @@
             list-style-type: none; /* Remove bullets */
             padding: 0; /* Remove padding */
             margin: 0; /* Remove margins */
-            color: rgb(236, 188, 54);
+            color: $mainColor;
             text-align: center;
             transition: color 0.3s linear;
             cursor: pointer;
@@ -34,7 +36,7 @@
                     content: "";
                     width: 0%;
                     height: 3px;
-                    background: rgb(236, 188, 54);
+                    background: $mainColor;
                     transition: width 0.2s linear;
                 }
 

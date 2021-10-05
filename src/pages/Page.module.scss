@@ -28,6 +28,14 @@
             height: 0px;
             overflow-x: hidden;
             overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 0.6em;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(236, 188, 54);
+                border-radius: 15px;
+            }
         }
         .githubLink {
             position: absolute;

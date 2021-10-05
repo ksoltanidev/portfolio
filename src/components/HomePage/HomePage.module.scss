@@ -1,5 +1,7 @@
+@import '../../styles/global';
+
 .content {
-    color: rgb(236, 188, 54);
+    color: $mainColor;
     text-align: center;
     position: absolute;
     top: 40%;
