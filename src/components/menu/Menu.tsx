@@ -24,16 +24,16 @@ function Menu({ onPageClick, currentPage }: Props) {
                 </li>
                 <li className={getMenuClassName(PageEnum.STORY)}
                     onClick={() => onPageClick(PageEnum.STORY)}>
-                    Mon parcours
+                    Parcours
                 </li>
                 <li className={getMenuClassName(PageEnum.SKILLS)}
                     onClick={() => onPageClick(PageEnum.SKILLS)}>
-                    Mes compétences
+                    Compétences
                 </li>
                 {/* <li onClick={() => onPageClick(PageEnum.PROJECTS)}>Mes travaux</li> */}
                 <li className={getMenuClassName(PageEnum.CONTACT)}
                     onClick={() => onPageClick(PageEnum.CONTACT)}>
-                    Me contacter
+                    Contact
                 </li>
                 <li><LanguageIcon className={styles.icon} /><span>FR</span></li>
             </ul>
