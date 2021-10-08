@@ -10,6 +10,7 @@
     .skillIcon{
         height: 3em;
         width: 3em;
+        min-width: 3em;
         margin-right: 10px;
     }
     .titleAndStars{
@@ -20,7 +21,7 @@
         white-space: nowrap;
         h3 {
             transition: 0.2s all 0.2s ease-out, color 0.2s ease-out;
-            font-size: 0.8em;
+            font-size: 1em;
             margin: 0;
             padding: 0;
         }
@@ -38,7 +39,7 @@
         transform: scale(1.2);
         color: $mainColorLight;
         h3 {
-            font-size: 1.2em;
+            font-size: 1.4em;
         }
     }
 }
