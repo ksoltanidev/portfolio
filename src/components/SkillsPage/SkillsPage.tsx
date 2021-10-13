@@ -25,10 +25,10 @@ function SkillsPage() {
             name: "JavaScript",
             icon: "javascript"
         },
-        // {
-        //     name: "HTML",
-        //     icon: "html"
-        // },
+        {
+            name: "Jest",
+            icon: "jest"
+        },
         {
             name: "CSS / SASS",
             icon: "sass"
