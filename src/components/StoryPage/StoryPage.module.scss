@@ -1,0 +1,15 @@
+@import '../../styles/global';
+
+.container {
+    color: $mainColor;
+    animation: fadeIn 0.3s linear forwards;
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0%;
+        }
+        100%{
+            opacity: 100%;
+        }
+    }
+}

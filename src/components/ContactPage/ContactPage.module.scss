@@ -1,0 +1,63 @@
+@import '../../styles/global';
+
+.container {
+    color: $mainColor;
+    animation: fadeIn 0.3s linear forwards;
+    text-align: center;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+    font-size: 1.6em;
+    animation: fadeIn 0.3s linear forwards;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    h1 {
+        flex-grow: 1;
+        //font-weight: bold;
+        //font-size: large;
+    }
+    a {
+        flex-grow: 1;
+        font-weight: bold;
+        transition: font-size 0.2s linear;
+        margin-right: 5px;
+        padding: 6px;
+
+        &:hover, &:visited, &:link, &:active {
+            color: $mainColor;
+            text-decoration: none;
+        }
+    }
+    p{
+        flex-grow: 1;
+        font-weight: bold;
+        margin: 15px 0px;
+
+        &:hover {
+            font-size: 1.2em;
+        }
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0%;
+        }
+        100%{
+            opacity: 100%;
+        }
+    }
+}
+
+@media (max-height: 600px){
+    .content{
+        top: 50%;
+    }
+}
+
+@media (max-height: 400px){
+    .content{
+        font-size: 1.2em;
+    }
+}

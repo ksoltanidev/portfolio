@@ -35,7 +35,7 @@ function Menu({ onPageClick, currentPage }: Props) {
                     onClick={() => onPageClick(PageEnum.CONTACT)}>
                     Contact
                 </li>
-                <li><LanguageIcon className={styles.icon} /><span>FR</span></li>
+                <li><LanguageIcon className={styles.icon} /><span>EN</span></li>
             </ul>
         </div>
     );
