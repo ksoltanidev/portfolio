@@ -25,17 +25,25 @@
         transition: font-size 0.2s linear;
         margin-right: 5px;
         padding: 6px;
+        cursor: pointer;
 
         &:hover, &:visited, &:link, &:active {
             color: $mainColor;
             text-decoration: none;
         }
     }
+    .icon {
+        cursor: pointer;
+        &:active {
+            color: white;
+        }
+    }
     p{
         flex-grow: 1;
         font-weight: bold;
         margin: 15px 0px;
-
+        height: 30px;
+        overflow: visible;
         &:hover {
             font-size: 1.2em;
         }

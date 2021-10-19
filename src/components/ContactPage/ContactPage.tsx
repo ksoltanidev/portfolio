@@ -13,11 +13,11 @@ function ContactPage() {
             <h1>Get in touch:</h1>
             <p>
                 <a href='https://www.linkedin.com/in/kian-soltani-155bab135' target='_blank'>Linkedin</a>
-                <ContentCopyIcon onClick={() => copy('https://www.linkedin.com/in/kian-soltani-155bab135')}/>
+                <ContentCopyIcon className={styles.icon} onClick={() => copy('https://www.linkedin.com/in/kian-soltani-155bab135')}/>
             </p>
             <p>
                 <a href="mailto: ksoltani.pro@gmail.com" target='_blank'>ksoltani.pro@gmail.com</a>
-                <ContentCopyIcon onClick={() => copy('ksoltani.pro@gmail.com')}/>
+                <ContentCopyIcon className={styles.icon} onClick={() => copy('ksoltani.pro@gmail.com')}/>
             </p>
         </div>
     )
