@@ -25,7 +25,7 @@ function Page() {
     }
 
     return (
-        <div className={styles.hompageContainer}>
+        <div className={styles.homepageContainer}>
             <div className={styles.threeSceneContainer}>
                 <ThreeScene currentPage={page}/>
             </div>

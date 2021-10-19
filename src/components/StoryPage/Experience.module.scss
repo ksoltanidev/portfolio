@@ -1,0 +1,27 @@
+@import '../../styles/global';
+
+.experienceContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  //border: red 1px solid;
+  margin: 20px 0px;
+  .dateContainer {
+    width: 200px;
+    font-size: 1em;
+  }
+  .dotContainer {
+    position: relative;
+    margin: 0 30px;
+    .dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: $mainColor;
+    }
+  }
+}

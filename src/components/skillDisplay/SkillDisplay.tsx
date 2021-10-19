@@ -24,7 +24,6 @@ import { ReactComponent as Threejs} from "./icons/threejs.svg";
 import { ReactComponent as Typescript} from "./icons/typescript.svg";
 import { ReactComponent as Unity} from "./icons/unity.svg";
 
-
 export type hardskillType = {
     name: string,
     icon?: string,

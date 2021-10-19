@@ -1,15 +1,28 @@
 @import '../../styles/global';
 
 .container {
-    color: $mainColor;
-    animation: fadeIn 0.3s linear forwards;
+  color: $mainColor;
+  animation: fadeIn 0.3s linear forwards;
 
-    @keyframes fadeIn {
-        0% {
-            opacity: 0%;
-        }
-        100%{
-            opacity: 100%;
-        }
+  .timelineContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    //margin: 200px 0 0 500px;
+    .line {
+      border-left: solid 5px $mainColor;
     }
+    .experiences {
+      transform: translate3d(-233px, 0, 0);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
 }
