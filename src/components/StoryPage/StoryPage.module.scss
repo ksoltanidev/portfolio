@@ -5,16 +5,9 @@
   animation: fadeIn 0.3s linear forwards;
 
   .timelineContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     //margin: 200px 0 0 500px;
-    .line {
-      border-left: solid 5px $mainColor;
-    }
-    .experiences {
-      transform: translate3d(-233px, 0, 0);
-    }
+    width: 40%;
+    margin: auto;
   }
 
   @keyframes fadeIn {
