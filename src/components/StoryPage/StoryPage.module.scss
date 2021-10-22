@@ -6,7 +6,7 @@
 
   .timelineContainer {
     width: 40%;
-    min-width: min(600px,90%);
+    min-width: calc(min(600px,90%));
     margin: auto;
   }
 
