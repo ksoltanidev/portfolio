@@ -5,8 +5,8 @@
   animation: fadeIn 0.3s linear forwards;
 
   .timelineContainer {
-    //margin: 200px 0 0 500px;
     width: 40%;
+    min-width: min(600px,90%);
     margin: auto;
   }
 

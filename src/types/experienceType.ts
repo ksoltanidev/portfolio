@@ -3,4 +3,5 @@ export type experienceType = {
     title: string,
     location?: string,
     description?: string,
+    tags?: string,
 }
