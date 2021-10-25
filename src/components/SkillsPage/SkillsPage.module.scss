@@ -2,7 +2,6 @@
 
 .container {
     color: $mainColor;
-    animation: fadeIn 0.3s linear forwards;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -12,12 +11,4 @@
         width: 350px;
     }
 
-    @keyframes fadeIn {
-        0% {
-            opacity: 0%;
-        }
-        100%{
-            opacity: 100%;
-        }
-    }
 }

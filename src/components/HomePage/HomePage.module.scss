@@ -8,7 +8,7 @@
     left: 50%;
     transform: translate3d(-50%,-50%,0);
     font-size: 1.6em;
-    animation: fadeIn 0.3s linear forwards;
+    //animation: fadeIn 0.3s linear forwards;
     h1 {
         flex-grow: 1;
         //font-weight: bold;
@@ -17,15 +17,6 @@
     p{
         flex-grow: 1;
         font-weight: bold;
-    }
-
-    @keyframes fadeIn {
-        0% {
-            opacity: 0%;
-        }
-        100%{
-            opacity: 100%;
-        }
     }
 }
 
