@@ -8,7 +8,7 @@
     left: 50%;
     transform: translate3d(-50%,-50%,0);
     font-size: 1.6em;
-    //animation: fadeIn 0.3s linear forwards;
+    animation: fadeIn 0.3s linear forwards;
     h1 {
         flex-grow: 1;
         //font-weight: bold;
@@ -29,5 +29,14 @@
 @media (max-height: 400px){
     .content{
         font-size: 1.2em;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

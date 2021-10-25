@@ -2,11 +2,20 @@
 
 .container {
   color: $mainColor;
+  animation: fadeIn 0.3s linear forwards;
 
   .timelineContainer {
     width: 40%;
     min-width: calc(min(600px,90%));
     margin: auto;
   }
+}
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
