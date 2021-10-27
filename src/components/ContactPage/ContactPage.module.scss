@@ -4,10 +4,9 @@
     color: $mainColor;
     animation: fadeIn 0.3s linear forwards;
     text-align: center;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate3d(-50%,-50%,0);
+    margin-right: 20vw;
+    margin-left: 20vw;
+    margin-top: 15vh;
     font-size: 1.6em;
     display: flex;
     flex-direction: column;
@@ -50,17 +49,51 @@
 
 }
 
-@media (max-height: 600px){
-    .content{
-        top: 50%;
+@media (max-width: 900px){
+    .container{
+        margin-right: 10vw;
+        margin-left: 10vw;
+    }
+}
+
+@media (max-width: 500px){
+    .container{
+        font-size: 1.2em;
+        margin-right: 5vw;
+        margin-left: 5vw;
+    }
+}
+
+@media (max-height: 500px){
+    .container{
+        margin-top: 10vh;
+        h1 {
+            margin: 5px 0px;
+        }
+        p {
+            margin: 5px 0px;
+        }
     }
 }
 
 @media (max-height: 400px){
-    .content{
+    .container{
         font-size: 1.2em;
     }
 }
+
+@media (max-height: 400px){
+    .container{
+        font-size: 1.2em;
+    }
+}
+
+@media (max-height: 300px){
+    .container{
+        font-size: 1em;
+    }
+}
+
 
 @keyframes fadeIn {
     0% {

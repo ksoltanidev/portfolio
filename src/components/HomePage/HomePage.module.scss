@@ -3,32 +3,46 @@
 .content {
     color: $mainColor;
     text-align: center;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate3d(-50%,-50%,0);
     font-size: 1.6em;
     animation: fadeIn 0.3s linear forwards;
-    h1 {
-        flex-grow: 1;
-        //font-weight: bold;
-        //font-size: large;
-    }
+    margin-right: 20vw;
+    margin-left: 20vw;
+    margin-top: 25vh;
     p{
-        flex-grow: 1;
         font-weight: bold;
+    }
+}
+
+@media (max-width: 900px){
+    .content{
+        margin-right: 10vw;
+        margin-left: 10vw;
+    }
+}
+
+@media (max-width: 500px){
+    .content{
+        margin-right: 5vw;
+        margin-left: 5vw;
     }
 }
 
 @media (max-height: 600px){
     .content{
-        top: 50%;
+        margin-top: 15vh;
     }
 }
 
 @media (max-height: 400px){
     .content{
         font-size: 1.2em;
+    }
+}
+
+@media (max-height: 300px){
+    .content{
+        font-size: 1em;
+        margin-top: 7vh;
     }
 }
 

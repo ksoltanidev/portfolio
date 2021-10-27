@@ -20,15 +20,15 @@ function Menu({ onPageClick, currentPage }: Props) {
             <ul>
                 <li className={getMenuClassName(PageEnum.HOME)}
                     onClick={() => onPageClick(PageEnum.HOME)}>
-                    Accueil
+                    Home
                 </li>
                 <li className={getMenuClassName(PageEnum.STORY)}
                     onClick={() => onPageClick(PageEnum.STORY)}>
-                    Parcours
+                    Experiences
                 </li>
                 <li className={getMenuClassName(PageEnum.SKILLS)}
                     onClick={() => onPageClick(PageEnum.SKILLS)}>
-                    Compétences
+                    Skills
                 </li>
                 {/* <li onClick={() => onPageClick(PageEnum.PROJECTS)}>Mes travaux</li> */}
                 <li className={getMenuClassName(PageEnum.CONTACT)}
