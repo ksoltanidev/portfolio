@@ -1,10 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from './SkillDisplay.module.scss';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
-import {Score} from "@mui/icons-material";
 import { ReactComponent as Git} from "./icons/git.svg";
 import { ReactComponent as Blender} from "./icons/blender.svg";
 import { ReactComponent as Csharp} from "./icons/csharp.svg";

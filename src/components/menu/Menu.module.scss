@@ -11,7 +11,7 @@
         flex-wrap: wrap;
         justify-content: space-around;
         padding: 0; /* Remove padding */
-        margin: 20px 5px 0px 5px; /* Remove margins */
+        margin: 20px 5px 0 5px; /* Remove margins */
 
         .currentPageLink {            
             &::after {
@@ -32,10 +32,10 @@
             &:not(:last-child) {
                 &::after {
                     position: absolute;
-                    bottom: 2px;
+                    bottom: -2px;
                     left: 0;
                     content: "";
-                    width: 0%;
+                    width: 0;
                     height: 3px;
                     background: $mainColor;
                     transition: width 0.2s linear;

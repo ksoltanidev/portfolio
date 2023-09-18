@@ -37,10 +37,6 @@ function SkillsPage() {
             name: "C#",
             icon: "csharp"
         },
-        {
-            name: "Java",
-            icon: "java"
-        },
     ]
 
     const techSkills: hardskillType[] = [

@@ -1,7 +1,5 @@
 import styles from './Menu.module.scss';
-import LanguageIcon from '@mui/icons-material/Language';
 import PageEnum from '../../types/PageEnum';
-//import HomeIcon from '@mui/icons-material/Home';
 
 type Props = {
     onPageClick: React.Dispatch<React.SetStateAction<PageEnum>>
@@ -35,7 +33,6 @@ function Menu({ onPageClick, currentPage }: Props) {
                     onClick={() => onPageClick(PageEnum.CONTACT)}>
                     Contact
                 </li>
-                <li><LanguageIcon className={styles.icon} /><span>EN</span></li>
             </ul>
         </div>
     );

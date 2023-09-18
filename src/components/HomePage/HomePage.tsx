@@ -5,7 +5,7 @@ function HomePage() {
     return (
         <div className={styles.content}>
             <h1>HELLO THERE!</h1>
-            <p>My name is Kian. I'm a passionate (full stack) developper. I love to learn and create digital stuff with other people.</p>
+            <p>My name is Kian. I'm a passionate (frontend) developer. I love to learn and create digital stuff with other people.</p>
         </div>
     )
 }
